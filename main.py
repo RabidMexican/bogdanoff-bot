@@ -1,9 +1,8 @@
-import chat
+import messages
 import cryptocompare
 import discord
+import env
 import os
-
-from env import TOKEN
 
 client = discord.Client()
 
@@ -22,39 +21,38 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message):
+async def on_message(discord_message):
 
     # Don't reply to yourself Bognadoff
-    if message.author == client.user:
+    if discord_message.author == client.user:
         return
 
     # Say hello
-    if 'bogdanoff' in message.content.lower():
-        await chat.hello(message)
+    if 'bogdanoff' in discord_message.content.lower():
+        await messages.hello(discord_message)
         return
 
     # Detect a ! command
-    if message.content.startswith('!'):
-        data = message.content.split()
+    if discord_message.content.startswith('!'):
+        data = discord_message.content.split()
         if len(data) < 2:
             return
 
-        # Setup variables
         command = data[0]
-        coin = data[1]
+        coin = data[1].upper()
 
         if not coin_exists(coin):
-            await chat.coin_not_found(message, coin)
+            await messages.coin_not_found(discord_message, coin)
             return
 
         if command == '!dump':
-            await chat.damp_it(message, coin)
+            await messages.damp_it(discord_message, coin)
 
         elif command == '!pump':
-            await chat.pamp_it(message, coin)
+            await messages.pamp_it(discord_message, coin)
 
         elif command == '!price':
             price = cryptocompare.get_price(coin, 'USD')
-            await chat.tell_price(message, coin, price[coin]['USD'])
+            await messages.tell_price(discord_message, coin, price[coin]['USD'])
 
-client.run(TOKEN)
+client.run(env.TOKEN)
