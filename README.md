@@ -1,5 +1,5 @@
 # bogdanoff-bot
- The Bogdanoff Bot
+The Bogdanoff Discord chat-bot.
 
 ## Setup
 
