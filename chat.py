@@ -31,3 +31,7 @@ async def tell_price(message, coin, price):
 async def coin_not_found(message, coin):
   reply = 'Hello {0.author.mention}, are you fucking with me ? {1} ?! Fuck off.'.format(message, coin)
   await message.channel.send(reply)
+
+async def hello(message):
+  reply = 'Hello {0.author.mention}, you called?'.format(message)
+  await message.channel.send(reply)
