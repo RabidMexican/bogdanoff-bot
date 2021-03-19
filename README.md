@@ -3,13 +3,17 @@ The Bogdanoff Discord chat-bot.
 
 ## Setup
 
-Create a file named env.py using the env.py.example file template provided. 
+Create a file named env.py using the env.py.example file template provided.
+
 Inside env.py you can define the following environment variables:
-* TOKEN
-* CHANNEL_NAME
-* CURRENCY
-* CURRENCT_SYMBOL
-* EXCHANGE
+
+| Variable        | Description                        | 
+|:---------------:|:----------------------------------:|
+| TOKEN           | Discord bot token                  |
+| CHANNEL_NAME    | Bot channel name                   |
+| CURRENCY        | Price currency                     |
+| CURRENCY_SYMBOL | Symbol for chosen currency         |
+| EXCHANGE        | Exchange to use for calculations   |
 
 Next we need to install the discord and cryptocompare packages using pip :
 ```
