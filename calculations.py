@@ -14,14 +14,14 @@ def get_daily(coin):
         coin,
         currency,
         datetime.datetime.now() - datetime.timedelta(days=1))[coin][currency]
-
+        
     increase = True
     if(today < yesterday):
         increase = False
 
     diff = today - yesterday
     daily = (diff / today) * 100
-    
+
     return format_percentage(daily, increase)
 
 

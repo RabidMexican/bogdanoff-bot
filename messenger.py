@@ -30,7 +30,7 @@ class Messenger:
 
     async def day(self, coin, daily):
         await self.send_message('How is {0} doing today?'.format(coin))
-        await self.send_message('{0} is {1} % today'.format(coin, daily))
+        await self.send_message('{0} is {1} today'.format(coin, daily))
 
     async def hello(self):
         await self.send_message('You called?')
@@ -39,17 +39,19 @@ class Messenger:
         await self.send_message('Ah, need some help ?')
         await self.send_message('Here are the available commands : ')
         await self.send_message("""```
-            +---------------+-------------------------+
-            | !help         | Get a list of commands  |
-            +---------------+-------------------------+
-            | !price {coin} | Get the price of a coin |
-            +---------------+-------------------------+
-            | !dump {coin}  | Dump a coin             |
-            +---------------+-------------------------+
-            | !pump {coin}  | Pump a coin             |
-            +---------------+-------------------------+
-            | !kill         | Kill Bognadoff          |
-            +---------------+-------------------------+
+            +---------------+----------------------------+
+            | !help         | Get a list of commands     |
+            +---------------+----------------------------+
+            | !price {coin} | Get the price of a coin    |
+            +---------------+----------------------------+
+            | !daily {coin} | Get daily change of a coin |
+            +---------------+----------------------------+
+            | !dump {coin}  | Dump a coin                |
+            +---------------+----------------------------+
+            | !pump {coin}  | Pump a coin                |
+            +---------------+----------------------------+
+            | !kill         | Kill Bognadoff             |
+            +---------------+----------------------------+
             ```""")
 
     async def login(self):
