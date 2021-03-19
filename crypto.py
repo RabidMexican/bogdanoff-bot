@@ -18,6 +18,7 @@ def get_daily(coin):
 def get_price(coin):
     price = cryptocompare.get_price(coin, currency)
     price = price[coin][currency]
+    return format_price(price)
 
 
 def format_percentage(percentage):
@@ -29,4 +30,6 @@ def format_percentage(percentage):
 
 def format_price(price):
     price = round(price, 2)
+    price = '{:,.2f}'.format(price)
+    print(price)
     return currency_symbol + str(price)

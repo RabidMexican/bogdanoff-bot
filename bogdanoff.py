@@ -1,5 +1,4 @@
 import crypto
-import cryptocompare
 import datetime
 import discord
 import env
@@ -27,7 +26,7 @@ class Bogdanoff:
         self.client.run(self.token)
 
     def coin_exists(self, coin):
-        all_coins = crypto.get_all_coins
+        all_coins = crypto.get_all_coins()
         if coin in all_coins:
             return True
         return False
