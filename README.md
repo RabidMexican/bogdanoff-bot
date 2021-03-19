@@ -8,7 +8,7 @@ Create a file named env.py using the env.py.example file template provided.
 Inside env.py you can define the following environment variables:
 
 | Variable        | Description                        | 
-|:---------------:|:----------------------------------:|
+| --------------- | ---------------------------------- |
 | TOKEN           | Discord bot token                  |
 | CHANNEL_NAME    | Bot channel name                   |
 | CURRENCY        | Price currency                     |
