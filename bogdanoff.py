@@ -1,4 +1,6 @@
+import calculations
 import cryptocompare
+import datetime
 import discord
 import env
 import os
@@ -14,6 +16,7 @@ class Bogdanoff:
         # Get environment variables
         self.token = env.TOKEN
         self.channel_name = env.CHANNEL_NAME
+        self.currency = 'USD'
 
         # Set-up listeners
         self.on_ready = self.client.event(self.on_ready)
@@ -53,8 +56,11 @@ class Bogdanoff:
         elif command == '!pump':
             await self.messenger.pamp_it(coin)
         elif command == '!price':
-            price = cryptocompare.get_price(coin, 'USD')
-            await self.messenger.tell_price(coin, price[coin]['USD'])
+            price = cryptocompare.get_price(coin, self.currency)
+            await self.messenger.tell_price(coin, price[coin][self.currency])
+        elif command == '!daily':
+            daily = calculations.get_daily(coin)
+            await self.messenger.day(coin, daily)
 
     async def on_message(self, message):
         self.messenger.set_message(message)
@@ -77,7 +83,7 @@ class Bogdanoff:
         print("Bogdanoff has disconnected")
 
     async def on_ready(self):
-        # Set-up messenger 
+        # Set-up messenger
         all_channels = self.client.get_all_channels()
         my_channel = discord.utils.get(all_channels, name=env.CHANNEL_NAME)
         self.messenger = Messenger(my_channel)

@@ -28,6 +28,10 @@ class Messenger:
         await self.send_message('...')
         await self.send_message(':chart_with_downwards_trend:\t DAMP IT \t:chart_with_downwards_trend:')
 
+    async def day(self, coin, daily):
+        await self.send_message('How is {0} doing today?'.format(coin))
+        await self.send_message('{0} is {1} % today'.format(coin, daily))
+
     async def hello(self):
         await self.send_message('You called?')
 
