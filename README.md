@@ -3,6 +3,10 @@ The Bogdanoff Discord chat-bot.
 
 ## Setup
 
+We need to install the discord and cryptocompare packages using pip :
+```
+pip install discord cryptocompare
+```
 Create a file named env.py using the env.py.example file template provided.
 
 Inside env.py you can define the following environment variables:
@@ -15,11 +19,6 @@ Inside env.py you can define the following environment variables:
 | CURRENCY_SYMBOL | Symbol for chosen currency         |
 | EXCHANGE        | Exchange to use for calculations   |
 
-Next we need to install the discord and cryptocompare packages using pip :
-```
-pip install discord cryptocompare
-```
-
 Now we can run the bot :
 ```
 python main.py
@@ -29,21 +28,11 @@ python main.py
 
 You can use the following commands, if a cryptocurrency is not found, Bogdanoff will let you know.
 
-```
-!help
-```
-```
-!kill
-```
-```
-!dump BTC
-```
-```
-!pump BTC
-```
-```
-!price BTC
-```
-```
-!daily BTC
-```
+| Variable      | Description                        | 
+| ------------- | ---------------------------------- |
+| !help         | List available commands            |
+| !kill         | Log-out Bogdanoff                  |
+| !dump {coin}  | Damp it!                           |
+| !pump {coin}  | Pamp it!                           |
+| !price {coin} | Get current price                  |
+| !daily {coin} | Get daily % change in price        |
