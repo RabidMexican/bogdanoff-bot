@@ -28,7 +28,7 @@ python main.py
 
 You can use the following commands, if a cryptocurrency is not found, Bogdanoff will let you know.
 
-| Variable      | Description                        | 
+| Command       | Description                        | 
 | ------------- | ---------------------------------- |
 | !help         | List available commands            |
 | !kill         | Log-out Bogdanoff                  |
