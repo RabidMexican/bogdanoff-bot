@@ -20,6 +20,12 @@ python main.py
 You can use the following commands, if a cryptocurrency is not found, Bogdanoff will let you know.
 
 ```
+!help
+```
+```
+!kill
+```
+```
 !dump BTC
 ```
 ```
@@ -27,4 +33,7 @@ You can use the following commands, if a cryptocurrency is not found, Bogdanoff 
 ```
 ```
 !price BTC
+```
+```
+!daily BTC
 ```
