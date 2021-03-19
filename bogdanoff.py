@@ -38,7 +38,7 @@ class Bogdanoff:
             if command == '!kill':
                 await self.messenger.logout()
                 await self.client.close()
-            elif command == '!help'
+            elif command == '!help':
                 await self.messenger.help()
             return
 

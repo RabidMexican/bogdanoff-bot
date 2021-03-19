@@ -20,16 +20,33 @@ class Messenger:
 
     # MESSAGES
 
-    async def coin_not_found(coin):
-        await self.send_message(message, 'Are you fucking with me ? {1} ?!'.format(self.message, coin))
+    async def coin_not_found(self, coin):
+        await self.send_message('Are you fucking with me ? {1} ?!'.format(self.message, coin))
 
     async def damp_it(self, coin):
         await self.send_message('Hello {0.author.mention}, they bought {1} ?'.format(self.message, coin))
         await self.send_message('...')
-        await self.send_message('DAMP IT')
+        await self.send_message(':chart_with_downwards_trend:\t DAMP IT \t:chart_with_downwards_trend:')
 
     async def hello(self):
         await self.send_message('You called?')
+
+    async def help(self):
+        await self.send_message('Ah, need some help ?')
+        await self.send_message('Here are the available commands : ')
+        await self.send_message("""```
+            +---------------+-------------------------+
+            | !help         | Get a list of commands  |
+            +---------------+-------------------------+
+            | !price {coin} | Get the price of a coin |
+            +---------------+-------------------------+
+            | !dump {coin}  | Dump a coin             |
+            +---------------+-------------------------+
+            | !pump {coin}  | Pump a coin             |
+            +---------------+-------------------------+
+            | !kill         | Kill Bognadoff          |
+            +---------------+-------------------------+
+            ```""")
 
     async def login(self):
         await self.send_message('Do not worry everyone, I have arrived!')
@@ -40,7 +57,7 @@ class Messenger:
     async def pamp_it(self, coin):
         await self.send_message('Hello {0.author.mention}, they sold {1} ?'.format(self.message, coin))
         await self.send_message('...')
-        await self.send_message('PAMP IT')
+        await self.send_message(':chart_with_upwards_trend:\t PAMP IT \t:chart_with_upwards_trend:')
 
     async def tell_price(self, coin, price):
         price = '{:,.2f}'.format(price)
