@@ -1,4 +1,4 @@
-import calculations
+import crypto
 import cryptocompare
 import datetime
 import discord
@@ -27,7 +27,7 @@ class Bogdanoff:
         self.client.run(self.token)
 
     def coin_exists(self, coin):
-        all_coins = cryptocompare.get_coin_list(format=True)
+        all_coins = crypto.get_all_coins
         if coin in all_coins:
             return True
         return False
@@ -56,10 +56,10 @@ class Bogdanoff:
         elif command == '!pump':
             await self.messenger.pamp_it(coin)
         elif command == '!price':
-            price = cryptocompare.get_price(coin, self.currency)
-            await self.messenger.tell_price(coin, price[coin][self.currency])
+            price = crypto.get_price(coin)
+            await self.messenger.tell_price(coin, price)
         elif command == '!daily':
-            daily = calculations.get_daily(coin)
+            daily = crypto.get_daily(coin)
             await self.messenger.day(coin, daily)
 
     async def on_message(self, message):

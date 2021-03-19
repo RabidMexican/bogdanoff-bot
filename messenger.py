@@ -69,4 +69,4 @@ class Messenger:
         price = '{:,.2f}'.format(price)
         await self.send_message('Hello {0.author.mention}, you want some {1} ?'.format(self.message, coin))
         await self.send_message('...')
-        await self.send_message('{0} is currently trading at ${1}'.format(coin, price))
+        await self.send_message('{0} is currently trading at {1}'.format(coin, price))
