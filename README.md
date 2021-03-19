@@ -3,7 +3,13 @@ The Bogdanoff Discord chat-bot.
 
 ## Setup
 
-Create a file named env.py using the env.py.example file template provided. Here you need to add the API token for your bot.
+Create a file named env.py using the env.py.example file template provided. 
+Inside env.py you can define the following environment variables:
+* TOKEN
+* CHANNEL_NAME
+* CURRENCY
+* CURRENCT_SYMBOL
+* EXCHANGE
 
 Next we need to install the discord and cryptocompare packages using pip :
 ```
