@@ -2,7 +2,6 @@ import crypto
 import datetime
 import discord
 import env
-import os
 
 from messenger import Messenger
 
@@ -15,7 +14,6 @@ class Bogdanoff:
         # Get environment variables
         self.token = env.TOKEN
         self.channel_name = env.CHANNEL_NAME
-        self.currency = 'USD'
 
         # Set-up listeners
         self.on_ready = self.client.event(self.on_ready)

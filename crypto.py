@@ -1,9 +1,12 @@
 import cryptocompare
 import datetime
+import env
+import os
 
-currency = 'USD'
-currency_symbol = '$'
-exchange = 'Kraken'
+# Set-up environment variables
+currency = env.CURRENCY
+currency_symbol = env.CURRENCY_SYMBOL
+exchange = env.EXCHANGE
 
 
 def get_all_coins():
@@ -11,7 +14,7 @@ def get_all_coins():
 
 
 def get_daily(coin):
-    data = cryptocompare.get_avg('BTC', currency=currency, exchange=exchange)
+    data = cryptocompare.get_avg(coin, currency=currency, exchange=exchange)
     return format_percentage(data['CHANGEPCT24HOUR'])
 
 
