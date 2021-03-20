@@ -23,12 +23,6 @@ class Bogdanoff:
     def start(self):
         self.client.run(self.token)
 
-    def coin_exists(self, coin):
-        all_coins = crypto.get_all_coins()
-        if coin in all_coins:
-            return True
-        return False
-
     async def execute_command(self, message):
         data = message.content.split()
         command = data[0]
@@ -44,7 +38,7 @@ class Bogdanoff:
 
         # Commands with a coin
         coin = data[1].upper()
-        if not self.coin_exists(coin):
+        if not crypto.coin_exists(coin):
             await self.messenger.coin_not_found(coin)
             return
 
@@ -58,6 +52,9 @@ class Bogdanoff:
         elif command == '!daily':
             daily = crypto.get_daily(coin)
             await self.messenger.day(coin, daily)
+        elif command == '!info':
+            info = crypto.get_info(coin)
+            await self.messenger.info(coin, info)
 
     async def on_message(self, message):
         self.messenger.set_message(message)

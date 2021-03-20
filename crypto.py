@@ -9,8 +9,13 @@ currency_symbol = env.CURRENCY_SYMBOL
 exchange = env.EXCHANGE
 
 
-def get_all_coins():
-    return cryptocompare.get_coin_list(format=True)
+def get_all_coins(format=True):
+    return cryptocompare.get_coin_list(format=format)
+
+
+def get_info(coin):
+    all_coins = get_all_coins(False)
+    return all_coins[coin]
 
 
 def get_daily(coin):
@@ -23,6 +28,12 @@ def get_price(coin):
     price = price[coin][currency]
     return format_price(price)
 
+def coin_exists(coin):
+    all_coins = get_all_coins()
+    if coin in all_coins:
+        return True
+    return False
+
 
 def format_percentage(percentage):
     result = round(percentage, 2)
@@ -34,5 +45,4 @@ def format_percentage(percentage):
 def format_price(price):
     price = round(price, 2)
     price = '{:,.2f}'.format(price)
-    print(price)
     return currency_symbol + str(price)

@@ -32,6 +32,7 @@ You can use the following commands, if a cryptocurrency is not found, Bogdanoff 
 | ------------- | ---------------------------------- |
 | !help         | List available commands            |
 | !kill         | Log-out Bogdanoff                  |
+| !info {coin}  | Get information for a coin         |
 | !dump {coin}  | Damp it!                           |
 | !pump {coin}  | Pamp it!                           |
 | !price {coin} | Get current price                  |

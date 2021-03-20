@@ -1,3 +1,4 @@
+import discord
 import time
 
 
@@ -16,6 +17,15 @@ class Messenger:
      # Send a message
     async def send_message(self, reply):
         await self.channel.send(reply)
+        time.sleep(1)
+
+    async def send_embed(self, title, url, desc):
+        embed = discord.Embed(
+            title=title,
+            url='https://cryptocompare.com' + url,
+            description=desc
+        )
+        await self.channel.send(embed=embed)
         time.sleep(1)
 
     # MESSAGES
@@ -42,6 +52,8 @@ class Messenger:
             +---------------+----------------------------+
             | !help         | Get a list of commands     |
             +---------------+----------------------------+
+            | !info {coin}  | Get info about a coin      |
+            +---------------+----------------------------+
             | !price {coin} | Get the price of a coin    |
             +---------------+----------------------------+
             | !daily {coin} | Get daily change of a coin |
@@ -53,6 +65,10 @@ class Messenger:
             | !kill         | Kill Bognadoff             |
             +---------------+----------------------------+
             ```""")
+
+    async def info(self, coin, info):
+        await self.send_message('Here is some information for {0} . . .'.format(coin))
+        await self.send_embed(info['FullName'], info['Url'], info['Description'])
 
     async def login(self):
         await self.send_message('Do not worry everyone, I have arrived!')
