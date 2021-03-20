@@ -90,8 +90,7 @@ class Messenger:
     async def help(self):
         await self.send_message('Ah, need some help ?')
         await self.send_message('Here are the available commands : ')
-        await self.send_message
-        ("""```
+        await self.send_message("""```
 +---------------+----------------------------+
 | !help         | Get a list of commands     |
 +---------------+----------------------------+
@@ -108,8 +107,7 @@ class Messenger:
 | !pump {coin}  | Pump a coin                |
 +---------------+----------------------------+
 | !kill         | Kill Bognadoff             |
-+---------------+----------------------------+
-        ```""")
++---------------+----------------------------+```""")
 
     async def info(self, coin, info):
         await self.send_message('{0}? Got it . . .'.format(coin))
