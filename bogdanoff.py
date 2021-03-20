@@ -14,6 +14,8 @@ class Bogdanoff:
         # Get environment variables
         self.token = env.TOKEN
         self.channel_name = env.CHANNEL_NAME
+        self.all_channels = []
+        self.channel = None
 
         # Set-up listeners
         self.on_ready = self.client.event(self.on_ready)
@@ -25,14 +27,20 @@ class Bogdanoff:
 
     async def execute_command(self, message):
         data = message.content.split()
-        command = data[0]
+        command = data[0][1:]
 
         # Commands with no parameters
         if len(data) < 2:
-            if command == '!kill':
+            if(command.upper() in crypto.get_all_coins()):
+                command = command.upper()
+                data = crypto.get_crypto(command)
+                await self.messenger.crypto2(command, data)
+
+            elif command == 'kill':
                 await self.messenger.logout()
                 await self.client.close()
-            elif command == '!help':
+
+            elif command == 'help':
                 await self.messenger.help()
             return
 
@@ -42,17 +50,21 @@ class Bogdanoff:
             await self.messenger.coin_not_found(coin)
             return
 
-        if command == '!dump':
+        if command == 'dump':
             await self.messenger.damp_it(coin)
-        elif command == '!pump':
+
+        elif command == 'pump':
             await self.messenger.pamp_it(coin)
-        elif command == '!price':
+
+        elif command == 'price':
             price = crypto.get_price(coin)
             await self.messenger.tell_price(coin, price)
-        elif command == '!daily':
+
+        elif command == 'daily':
             daily = crypto.get_daily(coin)
             await self.messenger.day(coin, daily)
-        elif command == '!info':
+
+        elif command == 'info':
             info = crypto.get_info(coin)
             await self.messenger.info(coin, info)
 
@@ -63,14 +75,13 @@ class Bogdanoff:
         if message.author == self.client.user:
             return
 
-        # Say hello
-        if 'bogdanoff' in message.content.lower():
-            await self.messenger.hello()
-
         # If message in bot channel
-        elif self.channel_name == str(message.channel):
-            # Detect a ! command
-            if message.content.startswith('!'):
+        if self.channel_name == str(message.channel):
+
+            if 'bogdanoff' in message.content.lower():
+                await self.messenger.hello()
+
+            elif message.content.startswith('!'):
                 await self.execute_command(message)
 
     async def on_disconnect(self):
@@ -78,9 +89,10 @@ class Bogdanoff:
 
     async def on_ready(self):
         # Set-up messenger
-        all_channels = self.client.get_all_channels()
-        my_channel = discord.utils.get(all_channels, name=env.CHANNEL_NAME)
-        self.messenger = Messenger(my_channel)
+        self.all_channels = self.client.get_all_channels()
+        self.channel = discord.utils.get(
+            self.all_channels, name=env.CHANNEL_NAME)
+        self.messenger = Messenger(self.channel)
 
         print('Bogdanoff is ready.')
         print('He has logged in as {0.user}'.format(self.client))

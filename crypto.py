@@ -12,15 +12,17 @@ exchange = env.EXCHANGE
 def get_all_coins(format=True):
     return cryptocompare.get_coin_list(format=format)
 
-
-def get_info(coin):
-    all_coins = get_all_coins(False)
-    return all_coins[coin]
-
+def get_crypto(coin):
+    data = cryptocompare.get_avg(coin, currency=currency, exchange=exchange)
+    return data
 
 def get_daily(coin):
     data = cryptocompare.get_avg(coin, currency=currency, exchange=exchange)
     return format_percentage(data['CHANGEPCT24HOUR'])
+
+def get_info(coin):
+    all_coins = get_all_coins(False)
+    return all_coins[coin]
 
 
 def get_price(coin):
