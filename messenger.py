@@ -34,7 +34,10 @@ class Messenger:
         await self.channel.send(reply)
         time.sleep(1)
 
+    # Send a simple embed
     async def send_embed(self, title, url, desc):
+        if len(desc) > 2000:
+            desc = desc[:2000]
         embed = discord.Embed(
             title=title,
             url='https://cryptocompare.com' + url,
